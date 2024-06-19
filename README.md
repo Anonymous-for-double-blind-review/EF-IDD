@@ -21,3 +21,9 @@ cd EF-IDD
 conda env create -f environment.yml
 conda activate efidd
 ```
+
+
+### Datasets
+
+- Download the datasets: [FF++](https://github.com/ondyari/FaceForensics), [FFIW](https://github.com/tfzhou/FFIW), [DFDC-P](https://ai.meta.com/datasets/dfdc/), [CDF2](https://github.com/yuezunli/celeb-deepfakeforensics)
+- Data preprocessing. For the all datasets, we use [RetainFace](https://github.com/biubug6/Pytorch_Retinaface) to align the faces. Use the code in directory ./preprocessing to get the preprocessed data.
