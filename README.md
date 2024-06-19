@@ -1,4 +1,7 @@
-<img src="https://github.com/Anonymous-for-double-blind-review/EF-IDD/blob/main/figures/setting.png" width=75% height=75%>
+
+<p align="center">
+  <img src="https://github.com/Anonymous-for-double-blind-review/EF-IDD/blob/main/figures/setting.png" width=75% height=75%>
+</p>
 
 ### EF-IDD
 The official codebase for Exemplar-Free Incremental Deepfake Detection
