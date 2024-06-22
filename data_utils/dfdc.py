@@ -1,13 +1,12 @@
 from glob import glob
 from os.path import join
-from .abstract_dataset import AbstractDataset
+from .base_dataset import BaseDataset
 import json
 
-class DFDC(AbstractDataset):
-    """
-    Deepfake Detection Challenge organized by Facebook
-    """
-    def __init__(self, split, root):
+class DFDC(BaseDataset):
+
+    def __init__(self, split, root, dataset_name, protocol):
+        super().__init__(root, split, dataset_name, protocol)
         self.dataset_name = 'DFDC'
         self.root = join(root, 'DFDC')
         indices = join(self.root, "dataset.json")
@@ -24,4 +23,4 @@ class DFDC(AbstractDataset):
 
         print("Data from 'dfdc' loaded.\n")
         print("Dataset contains {} images.\n".format(len(self.images)))
-        self.transform = self.get_transform(split)
+        self.transforms = self.get_transforms(dataset_name, split, protocol)

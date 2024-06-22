@@ -1,30 +1,22 @@
 import torch
 import numpy as np
 from os.path import join
-from .abstract_dataset import AbstractDataset
-import numpy as np
+from .base_dataset import BaseDataset
 import glob
-from os.path import join
 import os
 import json
 
 
-class FaceForensics(AbstractDataset):
+class FaceForensics(BaseDataset):
 
-    def __init__(self, root, split, balance=False, method='all'):
-        self.dataset_name = 'FF++'
-        self.root = join(root, 'FaceForensics++')
-        indices = join(self.root, split + ".json")
+    def __init__(self, root, split, dataset_name='FF++', protocol='DI-IDD', balance=False):
+        super().__init__(root, split, dataset_name, protocol)
+        self.dataset_name = dataset_name
+        self.root = os.path.join(root, 'FaceForensics++')
+        indices = os.path.join(self.root, split + ".json")
         real_path = os.path.join(self.root, 'original_sequences', 'youtube', 'videos')
         face_forgery = ['Deepfakes', 'Face2Face', 'FaceSwap', 'NeuralTextures']
-
-        if method == "all":
-            fake_paths = [os.path.join(self.root, 'manipulated_sequences', ff, 'videos') for ff in face_forgery]
-        elif method in face_forgery:
-            fake_paths = [os.path.join(self.root, 'manipulated_sequences', method, 'videos')]
-
-        else:
-            raise Exception("Sorry, unknown method")
+        fake_paths = [os.path.join(self.root, 'manipulated_sequences', ff, 'videos') for ff in face_forgery]
 
         fake_num = len(fake_paths)
         with open(indices, 'r', encoding='utf-8') as f:
@@ -55,4 +47,4 @@ class FaceForensics(AbstractDataset):
         print("Data from 'FF++' loaded.\n")
         print("Dataset contains {} images.".format(len(self.images)))
 
-        self.transform = self.get_transform(split)
+        self.transforms = self.get_transforms(dataset_name, split, protocol)

@@ -2,18 +2,18 @@ import numpy as np
 from glob import glob
 from os import listdir
 from os.path import join
-from .abstract_dataset import AbstractDataset
+from .base_dataset import BaseDataset
 
-
-class CelebDF(AbstractDataset):
+class CelebDF(BaseDataset):
     """
     Celeb-DF v2 Dataset proposed in "Celeb-DF: A Large-scale Challenging Dataset for DeepFake Forensics".
     """
 
-    def __init__(self, root, split, balance=False):
+    def __init__(self, root, split, dataset_name='Celeb-DF', protocol='DI-IDD', balance=False):
 
-        self.dataset_name = 'Celeb-DF'
-        print("Loading data from 'Celeb-DF' of split '{}' \nPlease wait patiently...".format(split))
+        super().__init__(root, split, dataset_name, protocol)
+
+        self.dataset_name = dataset_name
         self.categories = ['original', 'fake']
 
         self.root = join(root, 'Celeb-DF')
@@ -27,9 +27,10 @@ class CelebDF(AbstractDataset):
             test_ids if split == "test" else train_ids, balance)
         assert len(self.images) == len(self.targets), "The number of images and targets not consistent."
 
-        print("Data from 'Celeb-DF' loaded.\n")
-        print("Dataset contains {} images.\n".format(len(self.images)))
-        self.transform = self.get_transform(split)
+        print(f"{split} Data from 'Celeb-DF' loaded.\n")
+        print(f"Dataset contains {len(self.images)} images.\n")
+
+        self.transforms = self.get_transforms(dataset_name, split, protocol)
 
     def __get_images_ids(self):
         youtube_real = listdir(join(self.root, 'YouTube-real'))
