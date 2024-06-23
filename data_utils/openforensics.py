@@ -5,13 +5,13 @@ from .abstract_dataset import AbstractDataset
 
 class OpenForensics(AbstractDataset):
 
-    def __init__(self, split, root, transform, dataset_name='OpenForensics', protocol='D-IDD'):
+    def __init__(self, split, root, domain_index, dataset_name='OpenForensics', protocol='D-IDD'):
 
-        super().__init__(root, split, dataset_name, protocol)
         self.dataset_name = dataset_name
+        self.transform = domain_index
 
         self.root = join(root, 'OpenForensics')
-        self.transform = transform    
+
         self.images = []
         self.targets = []
 

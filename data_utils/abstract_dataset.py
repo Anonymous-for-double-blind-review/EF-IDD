@@ -69,4 +69,6 @@ class AbstractDataset(Dataset):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         aug_img = self.transforms(image=img)['image']
 
-        return aug_img, label
+        domain_index = self.domain_index
+
+        return aug_img, domain_index, label

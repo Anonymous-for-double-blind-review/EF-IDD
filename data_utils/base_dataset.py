@@ -5,10 +5,11 @@ from .abstract_dataset import AbstractDataset
 
 class BaseDataset(AbstractDataset):
 
-    def __init__(self, root, split, dataset_name, protocol):
+    def __init__(self, root, split, domain_index, dataset_name, protocol):
 
         self.root = root
         self.dataset_name = dataset_name
+        self.domain_index = domain_index
 
         self.images = []
         self.targets = []

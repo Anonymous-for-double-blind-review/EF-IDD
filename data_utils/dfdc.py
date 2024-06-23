@@ -6,9 +6,11 @@ import json
 
 class DFDC(AbstractDataset):
 
-    def __init__(self, split, root, dataset_name, protocol):
+    def __init__(self, split, root, domain_index, dataset_name='DFDC-P', protocol='D-IDD'):
         super().__init__(root, split, dataset_name, protocol)
-        self.dataset_name = 'DFDC'
+        self.dataset_name = dataset_name
+        self.domain_index = domain_index
+
         self.root = join(root, 'DFDC')
         indices = join(self.root, "dataset.json")
         with open(indices, 'r', encoding='utf-8') as f:

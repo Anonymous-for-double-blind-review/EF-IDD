@@ -6,10 +6,10 @@ from .base_dataset import AbstractDataset
 
 
 class DFFD(AbstractDataset):
-    def __init__(self, root, split, transform, dataset_name='DFFD', protocol='DI-IDD'):
+    def __init__(self, root, split, domain_index, dataset_name='DFFD', protocol='DI-IDD'):
 
         self.dataset_name = 'DFFD'
-        self.transform = transform
+        self.domain_index = domain_index
         self.root = join(root, 'DFFD')
 
         self.images = []

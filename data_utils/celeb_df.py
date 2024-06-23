@@ -10,9 +10,10 @@ class CelebDF(AbstractDataset):
     Celeb-DF v2 Dataset proposed in "Celeb-DF: A Large-scale Challenging Dataset for DeepFake Forensics".
     """
 
-    def __init__(self, root, split, dataset_name='Celeb-DF', protocol='DI-IDD', balance=False):
+    def __init__(self, root, split, domain_index, dataset_name='Celeb-DF', protocol='DI-IDD', balance=False):
 
         self.dataset_name = dataset_name
+        self.domain_index = domain_index
         self.categories = ['original', 'fake']
 
         self.root = join(root, 'Celeb-DF')

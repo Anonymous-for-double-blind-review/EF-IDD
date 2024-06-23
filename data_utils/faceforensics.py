@@ -8,8 +8,9 @@ import json
 
 class FaceForensics(AbstractDataset):
 
-    def __init__(self, root, split, dataset_name='FF++', protocol='DI-IDD', balance=False):
+    def __init__(self, root, split, domain_index,dataset_name='FF++', protocol='DI-IDD', balance=False):
         self.dataset_name = dataset_name
+        self.domain_index = domain_index
         self.root = os.path.join(root, 'FaceForensics++')
         indices = os.path.join(self.root, split + ".json")
         real_path = os.path.join(self.root, 'original_sequences', 'youtube', 'videos')

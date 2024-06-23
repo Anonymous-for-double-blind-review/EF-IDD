@@ -7,9 +7,10 @@ from .abstract_dataset import AbstractDataset
 
 class FFIW(AbstractDataset):
 
-    def __init__(self, root, split, dataset_name='FFIW', protocol='DI-IDD'):
+    def __init__(self, root, split, domain_index, dataset_name='FFIW', protocol='DI-IDD'):
         super().__init__(root, split, dataset_name, protocol)
         self.dataset_name = 'FFIW'
+        self.domain_index = domain_index
 
         self.root = join(root, 'FFIW', split)
         self.images = []

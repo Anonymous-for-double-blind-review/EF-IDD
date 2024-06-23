@@ -6,9 +6,10 @@ import os
 
 class Kodf(AbstractDataset):
 
-    def __init__(self, root, split, dataset_name='Kodf', protocol='DI-IDD'):
+    def __init__(self, root, split, domain_index, dataset_name='Kodf', protocol='DI-IDD'):
 
         self.dataset_name = dataset_name
+        self.domain_index = domain_index
 
         self.root = os.path.join(root, dataset_name, split)
         self.images = []
