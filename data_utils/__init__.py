@@ -5,13 +5,17 @@ from .dfdc import DFDC
 from .ffiw import FFIW
 from .dffd import DFFD
 from .openforensics import OpenForensics
+from .kodf import Kodf
+from .dfd import DFD
 
 dataset_dict = {'FF++': FaceForensics,
                 'Celeb-DF': CelebDF,
                 'DFDC-P': DFDC,
                 'FFIW': FFIW,
                 'DFFD': DFFD,
-                'OpenForensics': OpenForensics
+                'OpenForensics': OpenForensics,
+                'Kodf': Kodf,
+                'DFD': DFD
                 }
 
 
@@ -20,5 +24,5 @@ def get_dataset(data_name, split='train'):
         raise Exception('unknown dataset')
 
     dataset = dataset_dict[data_name](root='./dataset', split=split)
-    
+
     return dataset

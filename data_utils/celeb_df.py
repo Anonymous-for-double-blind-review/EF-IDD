@@ -2,16 +2,15 @@ import numpy as np
 from glob import glob
 from os import listdir
 from os.path import join
-from .base_dataset import BaseDataset
+from .abstract_dataset import AbstractDataset
 
-class CelebDF(BaseDataset):
+
+class CelebDF(AbstractDataset):
     """
     Celeb-DF v2 Dataset proposed in "Celeb-DF: A Large-scale Challenging Dataset for DeepFake Forensics".
     """
 
     def __init__(self, root, split, dataset_name='Celeb-DF', protocol='DI-IDD', balance=False):
-
-        super().__init__(root, split, dataset_name, protocol)
 
         self.dataset_name = dataset_name
         self.categories = ['original', 'fake']

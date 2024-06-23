@@ -1,16 +1,14 @@
-import torch
+
 import numpy as np
-from os.path import join
-from .base_dataset import BaseDataset
+from .abstract_dataset import AbstractDataset
 import glob
 import os
 import json
 
 
-class FaceForensics(BaseDataset):
+class FaceForensics(AbstractDataset):
 
     def __init__(self, root, split, dataset_name='FF++', protocol='DI-IDD', balance=False):
-        super().__init__(root, split, dataset_name, protocol)
         self.dataset_name = dataset_name
         self.root = os.path.join(root, 'FaceForensics++')
         indices = os.path.join(self.root, split + ".json")

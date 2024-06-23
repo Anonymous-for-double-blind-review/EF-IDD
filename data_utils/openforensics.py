@@ -1,8 +1,9 @@
 from glob import glob
 from os.path import join
-from .base_dataset import BaseDataset
+from .abstract_dataset import AbstractDataset
 
-class OpenForensics(BaseDataset):
+
+class OpenForensics(AbstractDataset):
 
     def __init__(self, split, root, transform, dataset_name='OpenForensics', protocol='D-IDD'):
 
@@ -14,14 +15,14 @@ class OpenForensics(BaseDataset):
         self.images = []
         self.targets = []
 
-        real_list= glob(join(self.root, split, 'real','*', '*'))
+        real_list = glob(join(self.root, split, 'real','*', '*'))
 
-        self.images  += real_list
+        self.images += real_list
         self.targets += [0] * len(real_list)
 
-        fake_list= glob(join(self.root, split, 'fake','*', '*'))
+        fake_list = glob(join(self.root, split, 'fake','*', '*'))
 
-        self.images  += fake_list
+        self.images += fake_list
         self.targets += [1] * len(fake_list)
         self.transforms = self.get_transforms(dataset_name, split, protocol)
         print(f"{split} Data from 'OpenForensics' loaded.\n")

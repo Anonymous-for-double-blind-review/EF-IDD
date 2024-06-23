@@ -1,9 +1,10 @@
 from glob import glob
 from os.path import join
-from .base_dataset import BaseDataset
+from .abstract_dataset import AbstractDataset
 import json
 
-class DFDC(BaseDataset):
+
+class DFDC(AbstractDataset):
 
     def __init__(self, split, root, dataset_name, protocol):
         super().__init__(root, split, dataset_name, protocol)

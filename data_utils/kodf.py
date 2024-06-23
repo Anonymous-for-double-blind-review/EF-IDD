@@ -1,22 +1,21 @@
 
 from glob import glob
-from os.path import join
 from .abstract_dataset import AbstractDataset
+import os
 
 
+class Kodf(AbstractDataset):
 
-class FFIW(AbstractDataset):
+    def __init__(self, root, split, dataset_name='Kodf', protocol='DI-IDD'):
 
-    def __init__(self, root, split, dataset_name='FFIW', protocol='DI-IDD'):
-        super().__init__(root, split, dataset_name, protocol)
-        self.dataset_name = 'FFIW'
+        self.dataset_name = dataset_name
 
-        self.root = join(root, 'FFIW', split)
+        self.root = os.path.join(root, dataset_name, split)
         self.images = []
         self.targets = []
 
-        real = glob(join(self.root, '*', '*.png'))
-        fake = glob(join(self.root, '*', '*.png'))
+        real = glob(os.path.join(self.root, 'real', '*', '*.png'))
+        fake = glob(os.path.join(self.root, 'fake', '*', '*', '*.png'))
 
         self.images += real
         self.targets += [0] * len(real)
@@ -24,7 +23,7 @@ class FFIW(AbstractDataset):
         self.images += fake
         self.targets += [1] * len(fake)
 
-        print("{} Data from 'FFIW' loaded.\n")
+        print(f"{split} Data from 'Kodf' loaded.\n")
         print("Dataset contains {} images.".format(len(self.images)))
         self.transforms = self.get_transforms(dataset_name, split, protocol)
 
